@@ -6,7 +6,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [1.0.0] — 2026-11-24
 
 ### Added
 - First release: the Luany skeleton (1.7) with accounts, in Portuguese.
