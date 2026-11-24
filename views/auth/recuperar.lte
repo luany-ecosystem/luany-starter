@@ -1,0 +1,18 @@
+@estende('layouts.conta')
+
+@secao('title', traduzir('recuperar.titulo'))
+
+@secao('cartao')
+    <h1>{{ traduzir('recuperar.titulo') }}</h1>
+    <p class="subtitulo">{{ traduzir('recuperar.subtitulo') }}</p>
+
+    <form method="POST" action="/recuperar-palavra-passe">
+        @csrf
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => traduzir('conta.email'), 'tipo' => 'email', 'autocompletar' => 'email'])
+        <button type="submit" class="btn btn-primary">{{ traduzir('recuperar.enviar') }}</button>
+    </form>
+
+    <div class="conta-ligacoes">
+        <a href="/entrar">{{ traduzir('recuperar.voltar') }}</a>
+    </div>
+@fimsecao

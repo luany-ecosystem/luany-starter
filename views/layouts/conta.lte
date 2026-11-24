@@ -1,0 +1,42 @@
+@estende('layouts.main')
+
+{{-- Páginas de conta (entrar, registo, palavra-passe, verificação): cartão centrado. --}}
+
+
+@style
+.conta { min-height: 100vh; display: grid; place-items: center; padding: 2.5rem 1rem; background: var(--bg-soft); }
+.conta-cartao {
+    width: 100%; max-width: 440px; padding: 2.2rem 2rem; border-radius: calc(var(--radius) * 1.4);
+    background: var(--surface); border: 1px solid var(--border); box-shadow: 0 24px 60px -32px rgba(5, 6, 26, .35);
+}
+.conta-marca { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.6rem; color: var(--heading); font: 800 1.05rem var(--font-display); }
+.conta-marca:hover { text-decoration: none; }
+.conta-marca img { width: 32px; height: 32px; }
+.conta h1 { font-size: 1.7rem; margin-bottom: .4rem; }
+.conta .subtitulo { color: var(--muted); margin-bottom: 1.6rem; }
+.campo { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1.1rem; }
+.campo label { font-weight: 600; font-size: .92rem; color: var(--heading); }
+.campo input {
+    min-height: 46px; padding: .6rem .85rem; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); font: inherit;
+    transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.campo input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.campo.com-erro input { border-color: #E5484D; }
+.campo .erro { color: #E5484D; font-size: .85rem; }
+.conta .btn { width: 100%; justify-content: center; margin-top: .4rem; }
+.conta-ligacoes { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin-top: 1.3rem; font-size: .9rem; }
+.conta .flash { margin: 0 0 1.2rem; }
+@endstyle
+
+@secao('content')
+<main class="conta">
+    <div class="conta-cartao">
+        <a class="conta-marca" href="/">
+            <img src="{{ asset('images/luany-mark-64.webp') }}" alt="" width="32" height="32">
+            {{ config('app.name') }}
+        </a>
+        @exibir('cartao')
+    </div>
+</main>
+@fimsecao

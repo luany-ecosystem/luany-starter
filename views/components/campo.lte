@@ -1,0 +1,11 @@
+{{-- Campo de formulário com o erro de validação: @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email']) --}}
+@php($mensagens = sessao('errors', [])[$nome] ?? [])
+<div class="campo {{ $mensagens ? 'com-erro' : '' }}">
+    <label for="{{ $nome }}">{{ $rotulo }}</label>
+    <input id="{{ $nome }}" name="{{ $nome }}" type="{{ $tipo ?? 'text' }}"
+           value="{{ ($tipo ?? 'text') === 'password' ? '' : ($valor ?? valorAnterior($nome, '')) }}"
+           autocomplete="{{ $autocompletar ?? 'on' }}" @se($obrigatorio ?? true) required @fimse>
+    @paracada($mensagens as $mensagem)
+        <span class="erro">{{ $mensagem }}</span>
+    @fimparacada
+</div>

@@ -1,0 +1,17 @@
+@estende('layouts.conta')
+
+@secao('title', traduzir('redefinir.titulo'))
+
+@secao('cartao')
+    <h1>{{ traduzir('redefinir.titulo') }}</h1>
+    <p class="subtitulo">{{ traduzir('redefinir.subtitulo') }}</p>
+
+    <form method="POST" action="/redefinir-palavra-passe">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => traduzir('conta.email'), 'tipo' => 'email', 'valor' => $email, 'autocompletar' => 'email'])
+        @incluir('components.campo', ['nome' => 'password', 'rotulo' => traduzir('redefinir.nova'), 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        @incluir('components.campo', ['nome' => 'password_confirmation', 'rotulo' => traduzir('conta.confirmar_palavra_passe'), 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        <button type="submit" class="btn btn-primary">{{ traduzir('redefinir.guardar') }}</button>
+    </form>
+@fimsecao

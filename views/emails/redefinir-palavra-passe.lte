@@ -1,0 +1,4 @@
+<p>{{ traduzir('email.ola', ['nome' => $nome]) }}</p>
+<p>{{ traduzir('email.redefinir.texto', ['app' => (string) config('app.name')]) }}</p>
+<p><a href="{{ $url }}">{{ traduzir('email.redefinir.botao') }}</a></p>
+<p>{{ traduzir('email.redefinir.rodape') }}</p>

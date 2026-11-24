@@ -1,0 +1,4 @@
+@php($flash = get_flash())
+@se($flash)
+    <div class="flash flash-{{ $flash['type'] }}" role="status">{{ $flash['message'] }}</div>
+@fimse
