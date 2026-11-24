@@ -24,7 +24,7 @@ class SessaoControlador extends Controller
         ], '/entrar');
 
         if (!auth()->attempt(['email' => $dados['email'], 'password' => $dados['password']])) {
-            sessao()->flash('errors', ['email' => ['O email ou a palavra-passe não estão corretos.']]);
+            sessao()->flash('errors', ['email' => [traduzir('entrar.erro')]]);
             sessao()->flash('_old_input', ['email' => $dados['email']]);
 
             return redirecionar('/entrar');
@@ -36,7 +36,7 @@ class SessaoControlador extends Controller
     public function sair(): Response
     {
         auth()->logout();
-        flash('success', 'Sessão terminada.');
+        flash('success', traduzir('sair.feito'));
 
         return redirecionar('/');
     }

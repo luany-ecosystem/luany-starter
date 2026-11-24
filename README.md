@@ -43,8 +43,9 @@ app/Controllers/Auth/      SessaoControlador, RegistoControlador, PalavraPasseCo
                            VerificacaoEmailControlador
 app/Controllers/           InicioControlador, PainelControlador
 app/Models/Utilizador.php  a conta (tabela utilizadores)
-app/Http/Middleware/       LimitarTentativas — 5 pedidos por minuto, por IP e por rota
-config/auth.php            modelo e caminhos (/entrar, /painel, /email/verificar…)
+app/Http/Middleware/       LimitarTentativas — limite por IP e por rota (config/auth.php → throttle)
+config/auth.php            modelo, caminhos (/entrar, /painel, /email/verificar…) e limite de tentativas
+lang/                      todos os textos: pt.php (pt_AO, pt_PT, pt_BR leem-no) e en.php
 database/migrations/       utilizadores, password_reset_tokens
 routes/http.php            todas as rotas
 views/auth/                entrar, registo, recuperar, redefinir, verificar-aviso
@@ -65,9 +66,15 @@ tests/Feature/ContaTest    os fluxos completos
 
 As colunas `password` e `email_verified_at` mantêm o nome inglês porque é assim que o luany/framework as lê.
 
+## Textos
+
+Títulos, botões, mensagens e emails estão em `lang/pt.php` e `lang/en.php`, nunca dentro das vistas: as vistas usam `traduzir('conta.entrar')`. O `pt_AO` lê o `pt.php`; ponha em `lang/pt_AO.php` (ou `pt_BR.php`) só o que mudar.
+
 ## Segurança incluída
 
-Palavras-passe com Argon2id (ou bcrypt), sessão regenerada no login, tokens de recuperação guardados só como hash, de uso único e com validade de 60 minutos, links de verificação assinados com a `APP_KEY` e ligados ao email atual, limites de tentativas, CSRF em todos os formulários. Atrás de um balanceador ou CDN, defina `TRUSTED_PROXIES` no `.env` para os limites contarem o IP real.
+Palavras-passe com Argon2id (ou bcrypt), sessão regenerada no login, tokens de recuperação guardados só como hash, de uso único e com validade de 60 minutos, links de verificação assinados com a `APP_KEY` e ligados ao email atual, limites de tentativas, CSRF em todos os formulários.
+
+O limite por omissão é de 5 pedidos por minuto, por IP e por rota. Se muitos utilizadores saem pelo mesmo IP (escritórios, universidades), suba-o com `AUTH_THROTTLE_MAX` no `.env`. Atrás de um balanceador ou CDN, defina `TRUSTED_PROXIES` no `.env` para os limites contarem o IP real.
 
 Rodar a `APP_KEY` invalida os links de verificação já enviados.
 

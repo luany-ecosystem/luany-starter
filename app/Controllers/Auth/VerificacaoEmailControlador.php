@@ -29,7 +29,7 @@ class VerificacaoEmailControlador extends Controller
         $utilizador = is_string($id) && ctype_digit($id) ? Utilizador::encontrar((int) $id) : null;
 
         if ($utilizador === null || !app('auth.verification')->verify($requisicao, $utilizador->chavePrimaria(), $utilizador->email)) {
-            abortar(403, 'Este link não é válido ou já expirou.');
+            abortar(403, traduzir('verificar.invalido'));
         }
 
         if (!$utilizador->emailVerificado()) {
@@ -37,7 +37,7 @@ class VerificacaoEmailControlador extends Controller
             $utilizador->forceFill(['email_verified_at' => date('Y-m-d H:i:s')]);
             $utilizador->guardar();
         }
-        flash('success', 'Email confirmado. Obrigado!');
+        flash('success', traduzir('verificar.feito'));
 
         return redirecionar(auth()->check() ? '/painel' : '/entrar');
     }
@@ -48,7 +48,7 @@ class VerificacaoEmailControlador extends Controller
         if ($utilizador instanceof Utilizador && !$utilizador->emailVerificado()) {
             self::enviarLink($utilizador);
         }
-        flash('success', 'Enviámos um novo link para o seu email.');
+        flash('success', traduzir('verificar.reenviado'));
 
         return redirecionar('/email/verificar-aviso');
     }
@@ -58,7 +58,7 @@ class VerificacaoEmailControlador extends Controller
         $url = url(app('auth.verification')->url($utilizador->chavePrimaria(), $utilizador->email));
 
         mailer()->to($utilizador->email, $utilizador->nome)
-            ->subject('Confirme o seu email')
+            ->subject(traduzir('email.verificar.assunto'))
             ->send('emails.verificar-email', ['nome' => $utilizador->nome, 'url' => $url]);
     }
 }

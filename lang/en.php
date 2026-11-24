@@ -1,0 +1,68 @@
+<?php
+
+// Starter texts in English (APP_LOCALE=en, and the fallback for any missing line).
+return [
+    'conta.email'                   => 'Email',
+    'conta.palavra_passe'           => 'Password',
+    'conta.confirmar_palavra_passe' => 'Confirm the password',
+    'conta.criar'                   => 'Create account',
+    'conta.entrar'                  => 'Log in',
+    'conta.sair'                    => 'Log out',
+
+    'entrar.subtitulo'      => 'Welcome back.',
+    'entrar.esqueceu'       => 'Forgot your password?',
+    'entrar.erro'           => 'The email or the password is not correct.',
+    'sair.feito'            => 'You are logged out.',
+
+    'registo.subtitulo'     => 'It takes less than a minute.',
+    'registo.nome'          => 'Name',
+    'registo.palavra_passe' => 'Password (at least 8 characters)',
+    'registo.tem_conta'     => 'Already have an account?',
+
+    'recuperar.titulo'      => 'Reset your password',
+    'recuperar.subtitulo'   => 'Enter your email and we will send you a link to choose a new password.',
+    'recuperar.enviar'      => 'Send link',
+    'recuperar.voltar'      => 'Back to log in',
+    'recuperar.enviado'     => 'If the email is registered, we have sent a link to reset the password.',
+    'recuperar.limite'      => 'Too many requests. Please try again in a few minutes.',
+    'redefinir.titulo'      => 'New password',
+    'redefinir.subtitulo'   => 'Choose a password with at least 8 characters.',
+    'redefinir.nova'        => 'New password',
+    'redefinir.guardar'     => 'Save the password',
+    'redefinir.invalido'    => 'The password reset link is not valid or has expired. Ask for a new one.',
+    'redefinir.feito'       => 'Password changed. You can log in now.',
+
+    'verificar.titulo'      => 'Confirm your email',
+    'verificar.texto'       => 'We sent a link to :email. Open it to activate your account. The link is valid for one hour.',
+    'verificar.reenviar'    => 'Send another link',
+    'verificar.reenviado'   => 'We sent a new link to your email.',
+    'verificar.feito'       => 'Email confirmed. Thank you!',
+    'verificar.invalido'    => 'This link is not valid or has expired.',
+
+    'painel.titulo'         => 'Dashboard',
+    'painel.ola'            => 'Hello, :nome',
+    'painel.criada'         => 'Account created',
+    'painel.confirmado'     => 'Email confirmed',
+
+    'inicio.titulo'         => 'Your application',
+    'inicio.titulo_destaque'=> 'has accounts.',
+    'inicio.lead'           => 'Sign-up, login, password reset and email verification, ready to use. Edit :ficheiro to change this page.',
+    'inicio.passo1.titulo'  => 'Authentication',
+    'inicio.passo1.texto'   => 'Controllers in :controladores, views in :vistas.',
+    'inicio.passo2.titulo'  => 'Email',
+    'inicio.passo2.texto'   => 'In development emails go to the log. To send them for real, configure SMTP.',
+    'inicio.passo3.titulo'  => 'In Portuguese',
+    'inicio.passo3.texto'   => 'Model, queries, routes, views and messages in Portuguese.',
+    'inicio.ir_painel'      => 'Go to the dashboard →',
+    'inicio.criar_conta'    => 'Create account →',
+
+    'email.ola'                 => 'Hello :nome,',
+    'email.verificar.assunto'   => 'Confirm your email',
+    'email.verificar.texto'     => 'Confirm your email to activate your account at :app:',
+    'email.verificar.botao'     => 'Confirm the email',
+    'email.verificar.rodape'    => 'The link is valid for one hour. If you did not create this account, ignore this message.',
+    'email.redefinir.assunto'   => 'Reset your password',
+    'email.redefinir.texto'     => 'We received a request to reset the password of your account at :app:',
+    'email.redefinir.botao'     => 'Choose a new password',
+    'email.redefinir.rodape'    => 'The link is valid for 60 minutes and can be used once. If you did not ask for it, ignore this message: your current password still works.',
+];

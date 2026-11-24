@@ -1,6 +1,6 @@
 @estende('layouts.main')
 
-@secao('title', 'Painel')
+@secao('title', traduzir('painel.titulo'))
 
 @style
 .painel { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
@@ -14,20 +14,20 @@
 @secao('content')
 <main class="painel">
     <div class="painel-topo">
-        <h1>Olá, {{ $utilizador->nome }}</h1>
+        <h1>{{ traduzir('painel.ola', ['nome' => $utilizador->nome]) }}</h1>
         <form method="POST" action="/sair">
             @csrf
-            <button type="submit" class="btn btn-secondary">Sair</button>
+            <button type="submit" class="btn btn-secondary">{{ traduzir('conta.sair') }}</button>
         </form>
     </div>
 
     <div class="painel-cartao">
         <dl>
-            <dt>Email</dt>
+            <dt>{{ traduzir('conta.email') }}</dt>
             <dd>{{ $utilizador->email }}</dd>
-            <dt>Conta criada</dt>
+            <dt>{{ traduzir('painel.criada') }}</dt>
             <dd>{{ data($utilizador->created_at, 'long') }}</dd>
-            <dt>Email confirmado</dt>
+            <dt>{{ traduzir('painel.confirmado') }}</dt>
             <dd>{{ data($utilizador->email_verified_at, 'datetime') }}</dd>
         </dl>
     </div>

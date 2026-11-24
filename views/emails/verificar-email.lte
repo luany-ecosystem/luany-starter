@@ -1,4 +1,4 @@
-<p>Olá {{ $nome }},</p>
-<p>Confirme o seu email para ativar a conta em {{ config('app.name') }}:</p>
-<p><a href="{{ $url }}">Confirmar o email</a></p>
-<p>O link é válido durante uma hora. Se não criou esta conta, ignore esta mensagem.</p>
+<p>{{ traduzir('email.ola', ['nome' => $nome]) }}</p>
+<p>{{ traduzir('email.verificar.texto', ['app' => (string) config('app.name')]) }}</p>
+<p><a href="{{ $url }}">{{ traduzir('email.verificar.botao') }}</a></p>
+<p>{{ traduzir('email.verificar.rodape') }}</p>

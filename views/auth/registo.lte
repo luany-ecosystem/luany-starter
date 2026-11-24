@@ -1,21 +1,21 @@
 @estende('layouts.conta')
 
-@secao('title', 'Criar conta')
+@secao('title', traduzir('conta.criar'))
 
 @secao('cartao')
-    <h1>Criar conta</h1>
-    <p class="subtitulo">Leva menos de um minuto.</p>
+    <h1>{{ traduzir('conta.criar') }}</h1>
+    <p class="subtitulo">{{ traduzir('registo.subtitulo') }}</p>
 
     <form method="POST" action="/registo">
         @csrf
-        @incluir('components.campo', ['nome' => 'nome', 'rotulo' => 'Nome', 'autocompletar' => 'name'])
-        @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email', 'autocompletar' => 'email'])
-        @incluir('components.campo', ['nome' => 'password', 'rotulo' => 'Palavra-passe (mínimo 8 caracteres)', 'tipo' => 'password', 'autocompletar' => 'new-password'])
-        @incluir('components.campo', ['nome' => 'password_confirmation', 'rotulo' => 'Confirmar a palavra-passe', 'tipo' => 'password', 'autocompletar' => 'new-password'])
-        <button type="submit" class="btn btn-primary">Criar conta</button>
+        @incluir('components.campo', ['nome' => 'nome', 'rotulo' => traduzir('registo.nome'), 'autocompletar' => 'name'])
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => traduzir('conta.email'), 'tipo' => 'email', 'autocompletar' => 'email'])
+        @incluir('components.campo', ['nome' => 'password', 'rotulo' => traduzir('registo.palavra_passe'), 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        @incluir('components.campo', ['nome' => 'password_confirmation', 'rotulo' => traduzir('conta.confirmar_palavra_passe'), 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        <button type="submit" class="btn btn-primary">{{ traduzir('conta.criar') }}</button>
     </form>
 
     <div class="conta-ligacoes">
-        <span>Já tem conta? <a href="/entrar">Entrar</a></span>
+        <span>{{ traduzir('registo.tem_conta') }} <a href="/entrar">{{ traduzir('conta.entrar') }}</a></span>
     </div>
 @fimsecao

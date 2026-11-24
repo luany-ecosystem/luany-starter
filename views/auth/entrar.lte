@@ -1,20 +1,20 @@
 @estende('layouts.conta')
 
-@secao('title', 'Entrar')
+@secao('title', traduzir('conta.entrar'))
 
 @secao('cartao')
-    <h1>Entrar</h1>
-    <p class="subtitulo">Bem-vindo de volta.</p>
+    <h1>{{ traduzir('conta.entrar') }}</h1>
+    <p class="subtitulo">{{ traduzir('entrar.subtitulo') }}</p>
 
     <form method="POST" action="/entrar">
         @csrf
-        @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email', 'autocompletar' => 'email'])
-        @incluir('components.campo', ['nome' => 'password', 'rotulo' => 'Palavra-passe', 'tipo' => 'password', 'autocompletar' => 'current-password'])
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => traduzir('conta.email'), 'tipo' => 'email', 'autocompletar' => 'email'])
+        @incluir('components.campo', ['nome' => 'password', 'rotulo' => traduzir('conta.palavra_passe'), 'tipo' => 'password', 'autocompletar' => 'current-password'])
+        <button type="submit" class="btn btn-primary">{{ traduzir('conta.entrar') }}</button>
     </form>
 
     <div class="conta-ligacoes">
-        <a href="/recuperar-palavra-passe">Esqueceu-se da palavra-passe?</a>
-        <a href="/registo">Criar conta</a>
+        <a href="/recuperar-palavra-passe">{{ traduzir('entrar.esqueceu') }}</a>
+        <a href="/registo">{{ traduzir('conta.criar') }}</a>
     </div>
 @fimsecao

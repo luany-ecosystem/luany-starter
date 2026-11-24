@@ -27,14 +27,14 @@ class PalavraPasseControlador extends Controller
                 $url = url('/redefinir-palavra-passe?token=' . $token . '&email=' . rawurlencode($email));
 
                 mailer()->to($email, (string) $utilizador->nome)
-                    ->subject('Redefinir a palavra-passe')
+                    ->subject(traduzir('email.redefinir.assunto'))
                     ->send('emails.redefinir-palavra-passe', ['nome' => $utilizador->nome, 'url' => $url]);
             });
 
         // A mesma mensagem para qualquer email: não revela que contas existem.
         flash($estado === PasswordBroker::THROTTLED ? 'warning' : 'success', $estado === PasswordBroker::THROTTLED
-            ? 'Demasiados pedidos. Tente novamente dentro de alguns minutos.'
-            : 'Se o email estiver registado, enviámos um link para redefinir a palavra-passe.');
+            ? traduzir('recuperar.limite')
+            : traduzir('recuperar.enviado'));
 
         return redirecionar('/recuperar-palavra-passe');
     }
@@ -62,12 +62,12 @@ class PalavraPasseControlador extends Controller
         ]);
 
         if ($estado !== PasswordBroker::PASSWORD_RESET) {
-            flash('error', 'O link para redefinir a palavra-passe não é válido ou já expirou. Peça um novo.');
+            flash('error', traduzir('redefinir.invalido'));
 
             return redirecionar('/recuperar-palavra-passe');
         }
 
-        flash('success', 'Palavra-passe alterada. Já pode entrar.');
+        flash('success', traduzir('redefinir.feito'));
 
         return redirecionar('/entrar');
     }

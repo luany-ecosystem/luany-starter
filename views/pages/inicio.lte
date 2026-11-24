@@ -69,36 +69,36 @@
     </header>
 
     <section class="container welcome-body">
-        <h1>A sua aplicação<br><span class="accent">já tem contas.</span></h1>
-        <p class="lead">Registo, entrada, recuperação de palavra-passe e verificação de email, prontos a usar. Edite <code>views/pages/inicio.lte</code> para mudar esta página.</p>
+        <h1>{{ traduzir('inicio.titulo') }}<br><span class="accent">{{ traduzir('inicio.titulo_destaque') }}</span></h1>
+        <p class="lead">{!! traduzir('inicio.lead', ['ficheiro' => '<code>views/pages/inicio.lte</code>']) !!}</p>
 
         <div class="welcome-steps">
             <a class="welcome-step" href="{{ $docs }}authentication" target="_blank" rel="noopener">
                 <span>01</span>
-                <h2>Autenticação</h2>
-                <p>Controladores em <code>app/Controllers/Auth/</code>, vistas em <code>views/auth/</code>.</p>
+                <h2>{{ traduzir('inicio.passo1.titulo') }}</h2>
+                <p>{!! traduzir('inicio.passo1.texto', ['controladores' => '<code>app/Controllers/Auth/</code>', 'vistas' => '<code>views/auth/</code>']) !!}</p>
                 <code>routes/http.php</code>
             </a>
             <a class="welcome-step" href="{{ $docs }}mail" target="_blank" rel="noopener">
                 <span>02</span>
-                <h2>Email</h2>
-                <p>Em desenvolvimento os emails vão para o log. Para enviar a sério, configure o SMTP.</p>
+                <h2>{{ traduzir('inicio.passo2.titulo') }}</h2>
+                <p>{{ traduzir('inicio.passo2.texto') }}</p>
                 <code>MAIL_MAILER=smtp</code>
             </a>
             <a class="welcome-step" href="{{ $docs }}portuguese" target="_blank" rel="noopener">
                 <span>03</span>
-                <h2>Em português</h2>
-                <p>Modelo, consultas, rotas, vistas e mensagens em português.</p>
+                <h2>{{ traduzir('inicio.passo3.titulo') }}</h2>
+                <p>{{ traduzir('inicio.passo3.texto') }}</p>
                 <code>luany criar:funcionalidade Produto nome:texto</code>
             </a>
         </div>
 
         <div class="welcome-actions">
             @autenticado
-                <a class="btn btn-primary" href="/painel">Ir para o painel →</a>
+                <a class="btn btn-primary" href="/painel">{{ traduzir('inicio.ir_painel') }}</a>
             @senao
-                <a class="btn btn-primary" href="/registo">Criar conta →</a>
-                <a class="btn btn-secondary" href="/entrar">Entrar</a>
+                <a class="btn btn-primary" href="/registo">{{ traduzir('inicio.criar_conta') }}</a>
+                <a class="btn btn-secondary" href="/entrar">{{ traduzir('conta.entrar') }}</a>
             @fimautenticado
         </div>
     </section>

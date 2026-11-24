@@ -130,6 +130,36 @@ class ContaTest extends TestCase
         $this->assertSame([], $this->emails());
     }
 
+    public function test_english_texts_with_app_locale_en(): void
+    {
+        putenv('APP_LOCALE=en');
+        $_ENV['APP_LOCALE'] = $_SERVER['APP_LOCALE'] = 'en';
+        try {
+            $page = $this->get('/entrar')->getBody();
+            $this->assertStringContainsString('Forgot your password?', $page);
+            $this->assertStringContainsString('lang="en"', $page);
+        } finally {
+            putenv('APP_LOCALE');
+            unset($_ENV['APP_LOCALE'], $_SERVER['APP_LOCALE']);
+        }
+    }
+
+    public function test_every_text_exists_in_both_languages(): void
+    {
+        $pt = require dirname(__DIR__, 2) . '/lang/pt.php';
+        $en = require dirname(__DIR__, 2) . '/lang/en.php';
+        $this->assertSame(array_keys($pt), array_keys($en));
+
+        $used = [];
+        foreach ([...glob(dirname(__DIR__, 2) . '/views/{*,*/*}.lte', GLOB_BRACE) ?: [], ...glob(dirname(__DIR__, 2) . '/app/Controllers/{*,*/*}.php', GLOB_BRACE) ?: []] as $file) {
+            preg_match_all("/traduzir\\('([a-z0-9_.]+)'/", (string) file_get_contents($file), $m);
+            array_push($used, ...$m[1]);
+        }
+        foreach (array_unique($used) as $key) {
+            $this->assertArrayHasKey($key, $pt, $key);
+        }
+    }
+
     public function test_login_attempts_are_limited(): void
     {
         for ($i = 0; $i < 5; $i++) {
