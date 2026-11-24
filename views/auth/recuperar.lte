@@ -1,0 +1,18 @@
+@estende('layouts.conta')
+
+@secao('title', 'Recuperar a palavra-passe')
+
+@secao('cartao')
+    <h1>Recuperar a palavra-passe</h1>
+    <p class="subtitulo">Indique o seu email e enviamos um link para definir uma nova palavra-passe.</p>
+
+    <form method="POST" action="/recuperar-palavra-passe">
+        @csrf
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email', 'autocompletar' => 'email'])
+        <button type="submit" class="btn btn-primary">Enviar link</button>
+    </form>
+
+    <div class="conta-ligacoes">
+        <a href="/entrar">Voltar a entrar</a>
+    </div>
+@fimsecao

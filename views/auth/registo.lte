@@ -1,0 +1,21 @@
+@estende('layouts.conta')
+
+@secao('title', 'Criar conta')
+
+@secao('cartao')
+    <h1>Criar conta</h1>
+    <p class="subtitulo">Leva menos de um minuto.</p>
+
+    <form method="POST" action="/registo">
+        @csrf
+        @incluir('components.campo', ['nome' => 'nome', 'rotulo' => 'Nome', 'autocompletar' => 'name'])
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email', 'autocompletar' => 'email'])
+        @incluir('components.campo', ['nome' => 'password', 'rotulo' => 'Palavra-passe (mínimo 8 caracteres)', 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        @incluir('components.campo', ['nome' => 'password_confirmation', 'rotulo' => 'Confirmar a palavra-passe', 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        <button type="submit" class="btn btn-primary">Criar conta</button>
+    </form>
+
+    <div class="conta-ligacoes">
+        <span>Já tem conta? <a href="/entrar">Entrar</a></span>
+    </div>
+@fimsecao

@@ -1,0 +1,4 @@
+<p>Olá {{ $nome }},</p>
+<p>Recebemos um pedido para redefinir a palavra-passe da sua conta em {{ config('app.name') }}:</p>
+<p><a href="{{ $url }}">Definir uma nova palavra-passe</a></p>
+<p>O link é válido durante 60 minutos e só pode ser usado uma vez. Se não fez este pedido, ignore esta mensagem: a palavra-passe atual continua a valer.</p>

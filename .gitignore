@@ -1,0 +1,46 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# Environment
+.env
+.env.*
+!.env.example
+!.env.encrypted
+!.env.*.encrypted
+
+# Cache & logs
+/storage/cache/views/*
+/storage/logs/*
+/storage/sessions/
+/storage/cache/routes.php
+!/storage/cache/views/.gitkeep
+!/storage/logs/.gitkeep
+
+# PHPUnit
+.phpunit.result.cache
+
+# Node
+/node_modules/
+
+# package
+package-lock.json
+yarn.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+/public/assets/build/
+
+# Local development only
+composer.local.json
+composer.local.lock
+/storage/rate-limits/

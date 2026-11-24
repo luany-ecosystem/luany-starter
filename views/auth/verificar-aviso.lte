@@ -1,0 +1,21 @@
+@estende('layouts.conta')
+
+@secao('title', 'Confirme o seu email')
+
+@secao('cartao')
+    <h1>Confirme o seu email</h1>
+    <p class="subtitulo">
+        Enviámos um link para <strong>{{ $utilizador?->email }}</strong>. Abra-o para ativar a conta.
+        O link é válido durante uma hora.
+    </p>
+
+    <form method="POST" action="/email/reenviar">
+        @csrf
+        <button type="submit" class="btn btn-secondary">Enviar outro link</button>
+    </form>
+
+    <form method="POST" action="/sair" class="conta-ligacoes">
+        @csrf
+        <button type="submit" class="btn btn-secondary">Sair</button>
+    </form>
+@fimsecao

@@ -1,0 +1,17 @@
+@estende('layouts.conta')
+
+@secao('title', 'Nova palavra-passe')
+
+@secao('cartao')
+    <h1>Nova palavra-passe</h1>
+    <p class="subtitulo">Escolha uma palavra-passe com pelo menos 8 caracteres.</p>
+
+    <form method="POST" action="/redefinir-palavra-passe">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
+        @incluir('components.campo', ['nome' => 'email', 'rotulo' => 'Email', 'tipo' => 'email', 'valor' => $email, 'autocompletar' => 'email'])
+        @incluir('components.campo', ['nome' => 'password', 'rotulo' => 'Nova palavra-passe', 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        @incluir('components.campo', ['nome' => 'password_confirmation', 'rotulo' => 'Confirmar a palavra-passe', 'tipo' => 'password', 'autocompletar' => 'new-password'])
+        <button type="submit" class="btn btn-primary">Guardar a palavra-passe</button>
+    </form>
+@fimsecao

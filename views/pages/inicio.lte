@@ -1,0 +1,145 @@
+@estende('layouts.main')
+
+{{-- Página inicial. O CSS e o JS vivem aqui: apague este ficheiro e não fica nada para trás. --}}
+
+@php($framework = class_exists(\Composer\InstalledVersions::class) ? ltrim((string) \Composer\InstalledVersions::getPrettyVersion('luany/framework'), 'v') : '')
+@php($docs = 'https://docs.luany.dev/pt/docs/')
+
+@style
+.welcome {
+    position: relative; isolation: isolate; overflow: hidden;
+    min-height: 100vh; display: flex; flex-direction: column;
+    background: var(--brand-ink); color: rgba(255, 255, 255, .86);
+}
+.welcome::after {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse at 15% 45%, rgba(5, 6, 26, .9), transparent 60%);
+}
+.welcome canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.welcome h1, .welcome h2 { color: #fff; }
+
+.welcome-top { display: flex; align-items: center; gap: .75rem; padding-block: 1.6rem; }
+.welcome-top img { width: 36px; height: 36px; }
+.welcome-top strong { font: 800 1.1rem var(--font-display); color: #fff; }
+.welcome-top .chip {
+    margin-left: auto; padding: .35rem .8rem; border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .16); font: 500 .78rem var(--font-mono); color: rgba(255, 255, 255, .7);
+}
+
+.welcome-body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: 3rem 4rem; }
+.welcome h1 { font-size: clamp(2.8rem, 1.6rem + 5vw, 5.6rem); letter-spacing: -.05em; line-height: .98; margin-bottom: 1.5rem; }
+.welcome h1 .accent { background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.welcome .lead { max-width: 36ch; font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem); color: rgba(255, 255, 255, .72); margin-bottom: 2.5rem; }
+.welcome .lead code { background: rgba(255, 255, 255, .08); color: #FDB37A; }
+
+.welcome-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+.welcome-step {
+    display: flex; flex-direction: column; gap: .6rem; padding: 1.4rem;
+    border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, .1);
+    background: rgba(255, 255, 255, .04); backdrop-filter: blur(6px); color: inherit;
+    transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease);
+}
+.welcome-step:hover { text-decoration: none; border-color: rgba(253, 150, 47, .5); background: rgba(255, 255, 255, .06); transform: translateY(-3px); }
+.welcome-step span { font: 500 .78rem var(--font-mono); color: var(--brand-orange); }
+.welcome-step h2 { font-size: 1.2rem; }
+.welcome-step p { font-size: .95rem; color: rgba(255, 255, 255, .66); }
+.welcome-step > code { margin-top: auto; display: block; padding: .55rem .7rem; border-radius: 8px; background: rgba(5, 6, 26, .6); color: #E4DFEC; font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.welcome-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.welcome .btn-secondary { background: rgba(255, 255, 255, .04); color: #fff; border-color: rgba(255, 255, 255, .28); }
+.welcome .btn-secondary:hover { border-color: #fff; }
+
+.welcome-foot {
+    display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding-block: 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, .08); font: .8rem var(--font-mono); color: rgba(255, 255, 255, .5);
+}
+.welcome-foot b { color: rgba(255, 255, 255, .8); font-weight: 500; }
+
+@media (max-width: 860px) { .welcome-steps { grid-template-columns: 1fr; } }
+@endstyle
+
+@secao('content')
+<main class="welcome">
+    <canvas data-welcome-wave aria-hidden="true"></canvas>
+
+    <header class="container welcome-top">
+        <img src="{{ asset('images/luany-mark-64.webp') }}" alt="" width="36" height="36">
+        <strong>{{ config('app.name') }}</strong>
+        @se($framework !== '')<span class="chip">Luany {{ $framework }}</span>@fimse
+    </header>
+
+    <section class="container welcome-body">
+        <h1>A sua aplicação<br><span class="accent">já tem contas.</span></h1>
+        <p class="lead">Registo, entrada, recuperação de palavra-passe e verificação de email, prontos a usar. Edite <code>views/pages/inicio.lte</code> para mudar esta página.</p>
+
+        <div class="welcome-steps">
+            <a class="welcome-step" href="{{ $docs }}authentication" target="_blank" rel="noopener">
+                <span>01</span>
+                <h2>Autenticação</h2>
+                <p>Controladores em <code>app/Controllers/Auth/</code>, vistas em <code>views/auth/</code>.</p>
+                <code>routes/http.php</code>
+            </a>
+            <a class="welcome-step" href="{{ $docs }}mail" target="_blank" rel="noopener">
+                <span>02</span>
+                <h2>Email</h2>
+                <p>Em desenvolvimento os emails vão para o log. Para enviar a sério, configure o SMTP.</p>
+                <code>MAIL_MAILER=smtp</code>
+            </a>
+            <a class="welcome-step" href="{{ $docs }}portuguese" target="_blank" rel="noopener">
+                <span>03</span>
+                <h2>Em português</h2>
+                <p>Modelo, consultas, rotas, vistas e mensagens em português.</p>
+                <code>luany criar:funcionalidade Produto nome:texto</code>
+            </a>
+        </div>
+
+        <div class="welcome-actions">
+            @autenticado
+                <a class="btn btn-primary" href="/painel">Ir para o painel →</a>
+            @senao
+                <a class="btn btn-primary" href="/registo">Criar conta →</a>
+                <a class="btn btn-secondary" href="/entrar">Entrar</a>
+            @fimautenticado
+        </div>
+    </section>
+
+    <footer class="container welcome-foot">
+        <span>PHP <b>{{ PHP_VERSION }}</b></span>
+        @se($framework !== '')<span>luany/framework <b>{{ $framework }}</b></span>@fimse
+        <span>APP_ENV <b>{{ env('APP_ENV', 'production') }}</b></span>
+    </footer>
+</main>
+@fimsecao
+
+@script
+// Ondas da marca: linhas finas nas cores do crescente Luany. Um só quadro com movimento reduzido.
+(function () {
+    var canvas = document.querySelector('[data-welcome-wave]');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d'), w = 0, h = 0, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function resize() {
+        var dpr = Math.min(devicePixelRatio || 1, 2), r = canvas.getBoundingClientRect();
+        w = r.width; h = r.height; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function draw(t) {
+        ctx.clearRect(0, 0, w, h);
+        var g = ctx.createLinearGradient(0, h, w, 0);
+        g.addColorStop(0, '#7A45A3'); g.addColorStop(.5, '#E4613E'); g.addColorStop(1, '#FD962F');
+        ctx.strokeStyle = g; ctx.lineWidth = 1; ctx.globalCompositeOperation = 'lighter';
+        for (var i = 0; i < 60; i++) {
+            var p = i / 60;
+            ctx.globalAlpha = .45 * (.25 + .75 * Math.sin(p * Math.PI));
+            ctx.beginPath();
+            for (var x = -8; x <= w + 8; x += 8) {
+                var y = h * (.98 - .74 * Math.pow(x / w, .9)) + Math.sin(x * .0032 + t * .00022 + p * 2.4) * 46 * (.6 + p) + (p - .5) * 90;
+                x === -8 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        if (!still) requestAnimationFrame(draw);
+    }
+    resize(); addEventListener('resize', resize);
+    draw(1200);
+}());
+@endscript

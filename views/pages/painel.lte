@@ -1,0 +1,35 @@
+@estende('layouts.main')
+
+@secao('title', 'Painel')
+
+@style
+.painel { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+.painel-topo { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.painel h1 { font-size: 2rem; }
+.painel-cartao { padding: 1.6rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+.painel dl { display: grid; grid-template-columns: max-content 1fr; gap: .6rem 1.4rem; }
+.painel dt { color: var(--muted); }
+@endstyle
+
+@secao('content')
+<main class="painel">
+    <div class="painel-topo">
+        <h1>Olá, {{ $utilizador->nome }}</h1>
+        <form method="POST" action="/sair">
+            @csrf
+            <button type="submit" class="btn btn-secondary">Sair</button>
+        </form>
+    </div>
+
+    <div class="painel-cartao">
+        <dl>
+            <dt>Email</dt>
+            <dd>{{ $utilizador->email }}</dd>
+            <dt>Conta criada</dt>
+            <dd>{{ data($utilizador->created_at, 'long') }}</dd>
+            <dt>Email confirmado</dt>
+            <dd>{{ data($utilizador->email_verified_at, 'datetime') }}</dd>
+        </dl>
+    </div>
+</main>
+@fimsecao
