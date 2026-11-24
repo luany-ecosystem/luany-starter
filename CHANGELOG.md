@@ -6,7 +6,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [1.0.1] — 2026-11-24
 
 ### Fixed
 - The install message and the README say that `luany migrar` needs luany/cli 1.13+ (older CLIs: `luany migrate`, or `luany self-update`). Found in the first install from Packagist.
