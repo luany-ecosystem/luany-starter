@@ -14,11 +14,13 @@ O código também é em português: o modelo `Utilizador` (`luany/pt`), controla
 
 - PHP 8.2+ com `pdo_sqlite` (ou `pdo_mysql` / `pdo_pgsql`) e `mbstring`
 - Composer
+- [Luany CLI](https://github.com/luany-ecosystem/luany-cli) 1.13 ou mais recente, para os comandos em português (`luany migrar`…). Já instalada? Atualize com `luany self-update`.
 - Node.js — só para o live reload (`luany dev`)
 
 ## Criar um projeto
 
 ```bash
+composer global require luany/cli    # ou: luany self-update
 composer create-project luany/starter minha-app
 cd minha-app
 luany migrar

@@ -32,5 +32,5 @@ if ($usesSqlite) {
 }
 
 echo "\n  A seguir:\n";
-echo "    luany migrar      criar as tabelas\n";
+echo "    luany migrar      criar as tabelas (luany/cli 1.13+; em versões antigas: luany migrate)\n";
 echo "    luany dev         arrancar o servidor com live reload  →  http://localhost:8000\n\n";
